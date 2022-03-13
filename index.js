@@ -123,11 +123,33 @@ this.thayMau = (value) =>{
 
 */
 
-let hienThiThongTin = (hoTen = 'loc', namSinh = 2000, tuoi = 2022 - namSinh){
-    console.log(hoTen);
-    console.log(tuoi);
-}
+// let hienThiThongTin = (hoTen = 'loc', namSinh = 2000, tuoi = 2022 - namSinh){
+//     console.log(hoTen);
+//     console.log(tuoi);
+// }
 
-hienThiThongTin()
-hienThiThongTin("loc", 1999)
-hienThiThongTin("loc", 1999, 25)
+// hienThiThongTin()
+// hienThiThongTin("loc", 1999)
+// hienThiThongTin("loc", 1999, 25)
+
+
+
+document.querySelector("#confirm").onclick = function (){
+    let arrNhanVien = document.querySelectorAll("#formControl input, #formControl select")
+    let nhanVien = {}
+    for (let index of arrNhanVien){
+        let {id,value, style} = index;
+        nhanVien = {...nhanVien, [id]:value}
+    }
+    console.log(nhanVien);
+    let html = "";
+    for (let key in nhanVien){
+        html +=`
+        <tr>
+            <td>${key}</td>
+            <td>${nhanVien[key]}</td>
+        </tr>        
+        `
+    }
+    document.querySelector('#tblNhanVien').innerHTML = html
+}
