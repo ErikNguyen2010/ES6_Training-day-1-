@@ -45,8 +45,8 @@ let hello = name =>{
     => Doi voi prototype (kieu du lieu minh tự định nghĩa) hoặc method thì dùng function. còn lại đói với các hàm xử lý thông thường nên sử dụng arrow function
 
 */
-console.log(this.innerHeight);
-console.log(this.innerWidth);
+console.log(window.innerHeight);
+console.log(window.innerWidth);
 
 
 let test = {
@@ -111,7 +111,7 @@ let renderButton = () => {
 }
 renderButton(arrColor);
 
-this.thayMau = (value) =>{
+window.thayMau = (value) =>{
     document.querySelector("#home").style.color = value;
 }
 
@@ -134,22 +134,96 @@ this.thayMau = (value) =>{
 
 
 
-document.querySelector("#confirm").onclick = function (){
-    let arrNhanVien = document.querySelectorAll("#formControl input, #formControl select")
+document.querySelector('#confirm').onclick = function (){
+    let arrNhanVien = document.querySelectorAll("#formControl input, #formControl select");
     let nhanVien = {}
-    for (let index of arrNhanVien){
-        let {id,value, style} = index;
+    for(let index of arrNhanVien){
+        let {id, value} = index;
         nhanVien = {...nhanVien, [id]:value}
     }
-    console.log(nhanVien);
     let html = "";
-    for (let key in nhanVien){
-        html +=`
+    for(let key in nhanVien){
+        html += `
         <tr>
             <td>${key}</td>
             <td>${nhanVien[key]}</td>
-        </tr>        
+        </tr>
         `
     }
-    document.querySelector('#tblNhanVien').innerHTML = html
+    document.querySelector('#tblNhanVien').innerHTML = html;
 }
+
+import {NhanVien} from './models/NhanVien.js';
+
+
+let nv = new NhanVien();
+nv.maNhanVien = 213;
+nv.tenNhanVien = "loc";
+console.log(nv);
+
+
+import {DOMAIN} from './models/NhanVien.js';
+import {XOAAPI} from './models/NhanVien.js';
+console.log(DOMAIN);
+console.log(XOAAPI(5));
+
+
+import pet_cho from './models/NhanVien.js'
+console.log(pet_cho);
+
+
+import './node_modules/lodash/lodash.min.js'
+
+console.log(_);
+
+
+let objectA = {
+    id: 5,
+}
+
+let objectB = {
+    id: 5,
+}
+
+console.log(_.isEqual(objectA,objectB));
+
+let arrProduct = [
+    {id:4, name:"china", price: 2000, img: "google.com"},
+    {id:45, name:"taiwan", price: 1000, img: "google.com"},
+    {id:61, name:"hongkong", price: 3000, img: "google.com"},
+    {id:12, name:"indonesia", price: 66000, img: "google.com"},
+
+]
+
+let result = _.orderBy(arrProduct, ['price'], ['id'])
+console.log(result);
+
+
+
+
+
+
+let hoten = "locdaubu"
+let deptrai = {
+    hoten
+}
+
+console.log(deptrai);
+
+
+
+
+
+let developer = {
+    ['tenDev'] : "locdeptrai",
+    tinhTrang: "dau Bu",
+    address : "google.com",
+    showInfo: function(){
+        console.log("hoten", developer.hoTen);
+    }
+}
+
+console.log(developer);
+
+var ho1ten
+console.log(typeof null == typeof undefined)
